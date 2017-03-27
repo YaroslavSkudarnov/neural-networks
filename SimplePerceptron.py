@@ -1,5 +1,5 @@
-import Layer
-import Neuron
+from Layer import Layer
+from Neuron import Neuron
 
 class SimplePerceptron:
     def __init__(self, input_neurons, start_multiplier=1, fade_multiplier=0.95, steps=100):
@@ -10,7 +10,8 @@ class SimplePerceptron:
 
     def __train_step_single_vec_tor(self, input_vector, output, multiplier):
         delta = output - self.output(input_vector)
-        self.__input_layer = [neuron.update(0, multiplier * delta * inp) for neuron, inp in zip(self.__input_layer, input_vector)])]
+        self.__input_layer = [neuron.update(0, multiplier * delta * inp) for neuron, inp in zip(self.__input_layer, input_vector)]
+        ###BIAS NEURON!!!
 
     def __train_step(self, input_vectors, outputs):
         multiplier = self.__start_multiplier
@@ -23,5 +24,5 @@ class SimplePerceptron:
             self.__train_step(input_vecs, outputs)
 
     def output(self, input_vector):
-        return sum(x * y for neuron, inp in zip(self.__input_layer, input_vector))
+        return self.__input_layer.output(input_vector)
        

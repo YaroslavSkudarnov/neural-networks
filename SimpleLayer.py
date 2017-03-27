@@ -1,6 +1,6 @@
 from Neuron import Neuron
 
-class Layer:
+class SimpleLayer:
     def __init__(self, input_neurons, output_neurons=1):
         self.__neurons = [Neuron(output_neurons) for _ in range(input_neurons)]
 

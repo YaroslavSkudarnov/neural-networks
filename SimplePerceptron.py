@@ -1,9 +1,9 @@
-from Layer import Layer
+from BiasedLayer import BiasedLayer
 from Neuron import Neuron
 
 class SimplePerceptron:
     def __init__(self, input_neurons, start_multiplier=1, fade_multiplier=0.95, steps=100):
-        self.__input_layer = Layer(input_neurons + 1)
+        self.__input_layer = BiasedLayer(input_neurons)
         self.__start_multiplier = start_multiplier
         self.__fade_multiplier = fade_multiplier
         self.__steps = steps

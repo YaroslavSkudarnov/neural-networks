@@ -10,6 +10,12 @@ class Layer:
     def __setitem__(self, index, value):
         self.__neurons[index] = value
 
+    def __str__(self):
+        result = 'Neurons:\n'
+        for neuron in self.__neurons:
+            result += str(neuron) + '\n'
+        return result
+
     def update(self, index, value):
         self.__neuron[index].update(value)
 

@@ -5,7 +5,7 @@ class Neuron:
     def __str__(self):
         return 'Outputs: {}'.format(self.__outputs)
 
-    def getOutput(self, index=0):
+    def output(self, index=0):
         return self.__outputs[index]
 
     def update(self, value, index=0):

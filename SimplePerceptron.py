@@ -8,15 +8,14 @@ class SimplePerceptron:
         self.__fade_multiplier = fade_multiplier
         self.__steps = steps
 
-    def __train_step_single_vec_tor(self, input_vector, output, multiplier):
+    def __train_step_single_vector(self, input_vector, output, multiplier):
         delta = output - self.output(input_vector)
         self.__input_layer = [neuron.update(0, multiplier * delta * inp) for neuron, inp in zip(self.__input_layer, input_vector)]
-        ###BIAS NEURON!!!
 
     def __train_step(self, input_vectors, outputs):
         multiplier = self.__start_multiplier
         for input_vector, output in input_vectors, outputs:
-            self.__train_step_single_vec(input_vector, output, multiplier)
+            self.__train_step_single_vector(input_vector, output, multiplier)
             multiplier *= self.__fade_multiplier
         
     def train(self, input_vectors, outputs):

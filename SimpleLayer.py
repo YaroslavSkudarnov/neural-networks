@@ -2,7 +2,10 @@ from Neuron import Neuron
 
 class SimpleLayer:
     def __init__(self, input_neurons, output_neurons=1):
-        self.__neurons = [Neuron(output_neurons) for _ in range(input_neurons)]
+        if isinstance(input_neurons, list):
+            self.__neurons = input_neurons
+        else:
+            self.__neurons = [Neuron(output_neurons) for _ in range(input_neurons)]
 
     def __getitem__(self, index):
         return self.__neurons[index]

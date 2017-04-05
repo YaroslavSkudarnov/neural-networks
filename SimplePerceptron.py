@@ -10,7 +10,7 @@ class SimplePerceptron:
 
     def __train_step_single_vector(self, input_vector, output, multiplier):
         delta = output - self.output(input_vector)
-        self.__input_layer = [neuron.update(0, multiplier * delta * inp) for neuron, inp in zip(self.__input_layer, input_vector)]
+        self.__input_layer = BiasedLayer([neuron.update( multiplier * delta * inp) for neuron, inp in zip(self.__input_layer, input_vector)])
 
     def __train_step(self, input_vectors, outputs):
         multiplier = self.__start_multiplier

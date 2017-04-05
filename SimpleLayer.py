@@ -21,7 +21,7 @@ class SimpleLayer:
 
     def update(self, index, value):
         self.__neurons[index].update(value)
-
+        
     def output(self, input_vector):
         return sum(neuron.output() * inp for neuron, inp in zip(self.__neurons, input_vector))
 

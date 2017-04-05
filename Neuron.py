@@ -10,4 +10,4 @@ class Neuron:
 
     def update(self, value, index=0):
         self.__outputs[index] += value
-    
+        return self

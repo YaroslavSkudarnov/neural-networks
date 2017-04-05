@@ -7,20 +7,19 @@ class SimplePerceptron:
 
     def __train_step_single_vector(self, input_vector, output, multiplier):
         delta = output - self.output(input_vector)
-        self.__input_layer = BiasedLayer([neuron.update( multiplier * delta * inp) for neuron, inp in zip(self.__input_layer, input_vector)])
+        self.__input_layer = BiasedLayer([neuron.update(self.__multiplier * delta * inp) for neuron, inp in zip(self.__input_layer, input_vector + [1.0])])
+#        print(input_vector)
+#        print(', '.join(str(x) for x in self.__input_layer._SimpleLayer__neurons))
 
     def __train_step(self, input_vectors, outputs):
-        multiplier = self.__start_multiplier
-        for input_vector, output in zip(input_vectors, outputs):
-            self.__train_step_single_vector(input_vector, output, multiplier)
-            multiplier *= self.__fade_multiplier
+        for input_vector, output in zip(input_vectors, outputs): #TODO: SHUFFLE
+            self.__train_step_single_vector(input_vector, output, self.__multiplier)
         
-    def train(self, input_vectors, outputs, start_multiplier=0.05, fade_multiplier=1, steps=100):
-        self.__start_multiplier = start_multiplier
-        self.__fade_multiplier = fade_multiplier
-
+    def train(self, input_vectors, outputs, start_multiplier=0.5, fade_multiplier=0.95, steps=100):
+        self.__multiplier = start_multiplier #TODO: REUSE MULTIPLIER
         for i in range(steps):
             self.__train_step(input_vectors, outputs)
+            self.__multiplier *= fade_multiplier
 
     def output(self, input_vector):
         return self.__input_layer.output(input_vector)
